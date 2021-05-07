@@ -50,10 +50,6 @@ const cardsArray = [
         img: 'images/heal.jpg'
     },
     {
-        name: 'bombchu',
-        img: 'images/bombchu.jpg'
-    },
-    {
         name: 'blank',
         img: 'images/blank.jpg'
     },
@@ -64,9 +60,16 @@ const cardsArray = [
     {
         name: 'halfheart',
         img: 'images/halfheart.jpg'
+    },
+    {
+        name: 'triforce',
+        img: 'images/triforce.jpg'
     }
 ]
 
+console.log(cardsArray.length)
+
+const grid = document.querySelector('.grid')
 
 
 
