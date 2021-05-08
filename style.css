@@ -1,6 +1,10 @@
 .grid {
     margin: 0 auto;
-    height: 700px;
-    width: 700px;
+    height: 300px;
+    width: 400px;
     background-color: antiquewhite;
+}
+
+.grid img {
+    height: 100px;
 }
