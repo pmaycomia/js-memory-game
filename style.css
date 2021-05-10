@@ -1,10 +1,15 @@
+body {
+    background-color: antiquewhite;
+}
+
 .grid {
     margin: 0 auto;
-    height: 300px;
-    width: 400px;
-    background-color: antiquewhite;
+    height: 455px;
+    width: 440px;
+    background-color: rgb(255, 255, 255);
 }
 
 .grid img {
     height: 100px;
+    padding: 5px;
 }

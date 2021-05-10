@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-const cardsArray = [
+const cardArray = [
     {
         name: 'shield',
         img: 'images/shield.jpg'
@@ -49,10 +49,14 @@ const cardsArray = [
         name: 'slingshot',
         img: 'images/slingshot.jpg'
     },
-    // {
-    //     name: 'bomb',
-    //     img: 'images/bomb.jpg'
-    // },
+    {
+        name: 'bomb',
+        img: 'images/bomb.jpg'
+    },
+    {
+        name: 'bomb',
+        img: 'images/bomb.jpg'
+    },
     // {
     //     name: 'potion',
     //     img: 'images/potion.jpg'
@@ -92,22 +96,57 @@ const cardsArray = [
     },
 ]
 
-console.log(cardsArray.length)
+console.log(cardArray.length)
 
 const grid = document.querySelector('.grid')
+let cardsChosen = []
+let cardsChosenId = []
+let cardsWon = []
 
 function createBoard() {
-    for (let i = 0; i < cardsArray.length; i++) {        
+    for (let i = 0; i < cardArray.length; i++) {        
         let card = document.createElement('img')        
         card.setAttribute('src', './images/triforce.jpg')       
-        card.setAttribute('data-img', i)       
+        card.setAttribute('data-id', i)       
         card.addEventListener('click', flipcard)        
         grid.appendChild(card)
     }
 }
 
-function flipcard() {
+function checkForMatch() {
 
+    let cards = document.querySelectorAll('img')
+    const firstCardId = cardsChosenId[0]
+    const secondCardId = cardsChosenId[1]
+
+    if (cardsChosen[0] === cardsChosen [1]) {
+        console.log("match!", cards, firstCardId, secondCardId)
+        cards[firstCardId].setAttribute('src', './images/blank.jpg')
+        cards[secondCardId].setAttribute('src', './images/blank.jpg')
+       
+    } else {
+        console.log("nope", cardsChosen, cardsChosenId);
+        cards[firstCardId].setAttribute('src', './images/triforce.jpg')
+        cards[secondCardId].setAttribute('src', './images/triforce.jpg')
+        cardsWon.push(cardsChosen)         
+    }
+    cardsChosen = []
+    cardsChosenId = []
+}
+
+function flipcard() {       
+    let cardId = this.getAttribute('data-id')
+    console.log(this.getAttribute('data-id'), cardId)   
+
+    cardsChosen.push(cardArray[cardId].name)        
+    cardsChosenId.push(cardId)
+    this.setAttribute('src', cardArray[cardId].img)
+
+    if (cardsChosen.length === 2) {
+        //checkForMatch function
+        setTimeout(checkForMatch, 500)
+        console.log(cardsChosen);
+    }
 }
 
 createBoard()
