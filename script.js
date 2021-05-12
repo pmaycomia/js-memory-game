@@ -57,10 +57,14 @@ const cardArray = [
         name: 'bomb',
         img: 'images/bomb.jpg'
     },
-    // {
-    //     name: 'potion',
-    //     img: 'images/potion.jpg'
-    // },
+    {
+        name: 'potion',
+        img: 'images/potion.jpg'
+    },
+    {
+        name: 'potion',
+        img: 'images/potion.jpg'
+    }
     // {
     //     name: 'boomerang',
     //     img: 'images/boomerang.jpg'
@@ -86,6 +90,10 @@ const cardArray = [
     //     name: 'halfheart',
     //     img: 'images/halfheart.jpg'
     // },
+    
+]
+
+const defaultCards = [
     {
         name: 'triforce',
         img: 'images/triforce.jpg'
@@ -93,15 +101,19 @@ const cardArray = [
     {
         name: 'blank',
         img: 'images/blank.jpg'
-    },
+    }
 ]
 
-console.log(cardArray.length)
-
+const timer = document.querySelector('#timer')
+const score = document.querySelector('#score')
 const grid = document.querySelector('.grid')
+const youWon = document.querySelector('#won')
 let cardsChosen = []
 let cardsChosenId = []
 let cardsWon = []
+
+cardArray.sort(() => 0.5 - Math.random())
+
 
 function createBoard() {
     for (let i = 0; i < cardArray.length; i++) {        
@@ -110,6 +122,7 @@ function createBoard() {
         card.setAttribute('data-id', i)       
         card.addEventListener('click', flipcard)        
         grid.appendChild(card)
+       
     }
 }
 
@@ -119,17 +132,26 @@ function checkForMatch() {
     const firstCardId = cardsChosenId[0]
     const secondCardId = cardsChosenId[1]
 
+    if (cardsWon.length === cardArray.length / 2) {
+        console.log("you win!")
+        youWon.style.display = "flex"
+    }
+
     if (cardsChosen[0] === cardsChosen [1]) {
         console.log("match!", cards, firstCardId, secondCardId)
         cards[firstCardId].setAttribute('src', './images/blank.jpg')
         cards[secondCardId].setAttribute('src', './images/blank.jpg')
+        cardsWon.push(cardsChosen)
+        score.textContent = cardsWon.length
+        
        
     } else {
         console.log("nope", cardsChosen, cardsChosenId);
         cards[firstCardId].setAttribute('src', './images/triforce.jpg')
         cards[secondCardId].setAttribute('src', './images/triforce.jpg')
-        cardsWon.push(cardsChosen)         
+        
     }
+
     cardsChosen = []
     cardsChosenId = []
 }
@@ -149,7 +171,7 @@ function flipcard() {
     }
 }
 
-createBoard()
 
+createBoard()
 
 })

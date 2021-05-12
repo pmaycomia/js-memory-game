@@ -13,3 +13,9 @@ body {
     height: 100px;
     padding: 5px;
 }
+
+#won {
+   display: none;
+   /* z-index: 10;
+   height: 1000px; */
+}
